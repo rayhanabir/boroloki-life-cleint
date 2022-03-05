@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../components/LoginPage/Firebase/firebase.init";
@@ -21,13 +22,15 @@ const useFirebase = () => {
 
         //google sign in
 
-  const signInGoogle = () => {
+  const signInGoogle = (location, navigate) => {
       setIsLoading(true)
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setAuthError('');
         const user = result.user;
         setUser(user)
+        const destination = location?.state?.from || "/";
+        navigate(destination);
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -37,15 +40,23 @@ const useFirebase = () => {
 
     //new user sign in
 
-  const signUpUser = (email, password, location, navigate) => {
+  const signUpUser = (email, password, name, location, navigate) => {
     setIsLoading(true)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        // const user = userCredential.user;
+        const newUser = {email, displayName:name};
+        setUser(newUser);
+        //save to firebase
+        updateProfile(auth.currentUser, {
+          displayName: name
+        }).then(() => {
+        }).catch((error) => {
+        });
         const destination = location?.state?.from || "/";
         navigate(destination)
         setAuthError('');
-        setUser(user)
+        
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -55,7 +66,7 @@ const useFirebase = () => {
 
         //existing user sign in
 
-  const signInUser = (email, password, location, navigate) => {
+  const signInUser = (email, password, location,navigate) => {
     setIsLoading(true)
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

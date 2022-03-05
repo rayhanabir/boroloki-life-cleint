@@ -21,6 +21,9 @@ const Login = () => {
         signInUser(userData.email, userData.password, location, navigate)
         
     }
+    const handleGoogleLogin =()=>{
+      signInGoogle(location, navigate);
+    }
   return (
     <>
       <section id="login">
@@ -45,7 +48,7 @@ const Login = () => {
             <button className="login_btn">Login</button>
           </Form>
           <p className="text-center mt-2">New User? please Register <Link to='/register'>Register</Link></p>
-            <button className="login_btn" onClick={signInGoogle}>Sign in Using Google</button>
+            <button className="login_btn" onClick={handleGoogleLogin}>Sign in Using Google</button>
           </div>}
           {isLoading && <Spinner animation="border" variant="secondary" />} 
         </div>

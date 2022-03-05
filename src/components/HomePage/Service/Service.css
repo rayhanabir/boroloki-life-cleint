@@ -1,0 +1,20 @@
+.service_card {
+   text-align: center;
+   box-shadow: 5px 5px 4px 4px #888888;
+   padding: 15px;
+   margin: 8px;
+   border-radius: 7px;
+}
+.service_card img{
+   width: 100px;
+   margin-bottom: 15px;
+}
+.service_card button{
+   width: 130px;
+   border: none;
+   color: white;
+   background-color: #251D58;
+   padding: 5px 20px;
+   font-weight: 600;
+   border-radius: 7px;
+}

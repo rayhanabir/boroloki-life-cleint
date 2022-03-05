@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Form, Spinner } from 'react-bootstrap';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation,useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import './Register.css';
 
@@ -24,7 +24,10 @@ const Register = () => {
         if(userData.password !==userData.password1){
             return;
         }
-        signUpUser(userData.email, userData.password, location, navigate)
+        signUpUser(userData.email, userData.password, userData.name, location, navigate)
+    }
+    const handleGoogleLogin=()=>{
+      signInGoogle(location, navigate)
     }
     return (
         <>
@@ -72,7 +75,7 @@ const Register = () => {
             <button className="register_btn">Login</button>
           </Form>
           <p className="text-center mt-2">Already Registered? please Login <Link to='/login'>Login</Link></p>
-            <button className="register_btn" onClick={signInGoogle}>Sign in Using Google</button>
+            <button className="register_btn" onClick={handleGoogleLogin}>Sign in Using Google</button>
           </div>}
           {isLoading && <Spinner animation="border" variant="secondary" />}
         </div>
