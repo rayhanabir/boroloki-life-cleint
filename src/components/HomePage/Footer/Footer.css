@@ -1,0 +1,26 @@
+#footer{
+    background-color: #251D58;
+    padding: 100px;
+
+}
+#footer p, h4, li{
+    color: white;
+}
+#footer .about p{
+    display: inline-block;
+    max-width: 400px;
+}
+.footer_container ul{
+    margin: 0 ;
+    padding: 0;
+}
+.footer_container ul li{
+    margin: 0 ;
+}
+
+.footer_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}

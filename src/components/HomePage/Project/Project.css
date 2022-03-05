@@ -1,0 +1,12 @@
+.project_box{
+    width: 400px;
+    height: 400px;
+}
+.project_box img{
+    width:280px;
+    height: 280px;
+
+}
+.project_box h5{
+    margin-top: 10px;
+}
