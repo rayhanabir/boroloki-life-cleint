@@ -7,7 +7,14 @@ import Login from "./components/LoginPage/Login/Login";
 import Register from "./components/LoginPage/Register/Register";
 import AuthProvider from "./context/AuthProvider";
 import PrivateRoute from "./components/LoginPage/PrivateRoute/PrivateRoute";
-import Book from "./components/Others/Book/Book";
+import Dashboard from "./components/DashBoardPage/Dashboard/Dashboard";
+import AddService from "./components/DashBoardPage/AddService/AddService";
+import MakeAdmin from "./components/DashBoardPage/MakeAdmin/MakeAdmin";
+import BookList from "./components/DashBoardPage/BookList/BookList";
+import Review from "./components/DashBoardPage/Review/Review";
+import ManageService from "./components/DashBoardPage/ManageService/ManageService";
+import OrderList from "./components/DashBoardPage/OrderList/OrderList";
+import Book from "./components/DashBoardPage/Book/Book";
 
 function App() {
   return (
@@ -20,7 +27,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path='book' element={<PrivateRoute><Book/></PrivateRoute>}/>
+          <Route path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}>
+            <Route path="/dashboard/addService" element={<AddService/>}/>
+            <Route path="/dashboard/makeAdmin" element={<MakeAdmin/>}/>
+            <Route path="/dashboard/BookList" element={<BookList/>}/>
+            <Route path="/dashboard/review" element={<Review/>}/>
+            <Route path="/dashboard/book/:serviceId" element={<Book/>}/>
+            <Route path="/dashboard/manage" element={<ManageService/>}/>
+            <Route path="/dashboard/orderList" element={<OrderList/>}/>
+          </Route>
+          
         </Routes>
       </BrowserRouter>
     </AuthProvider>
