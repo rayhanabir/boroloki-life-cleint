@@ -1,40 +1,33 @@
-import React,{useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
-import {Alert} from 'react-bootstrap';
-import './Book.css';
+import React, { useEffect, useState,  } from 'react';
+import useAuth from './src/hooks/useAuth';
 
-const Book = () => {
+const data = () => {
     const [booking, setBooking] = useState({});
     const [orderSuccess, setOrderSuccess] = useState(false)
     const {user} = useAuth();
-    const [userData, setUserData] = useState({...user})
+    
     const {serviceId} = useParams()
 
+    const initialValue ={
+        customerName:user.displayName,
+        customerEmail:user.email,
+        serviceName:booking.name
+    };
+    const [bookingInfo, setBookingInfo] = useState(initialValue);
+
+   
     const handleBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
-        const newInfo = {...booking}
-
-        if(field ==='serviceName'){
-            newInfo[field] = value;
-            setBooking(newInfo);
-        }
-        else{
-            const updateUser = {...user}
-            updateUser[field] = value;
-            setUserData(updateUser);
-        }  
+        const newInfo = {...bookingInfo}
+        newInfo[field] = value;
     }
     
     const handleSubmit = e =>{
         e.preventDefault();
         
         const orders = {
-            serviceName:booking.name,
-            serviceImage:booking.image,
-            cutomerName : userData.displayName,
-            CustomerEmail : userData.email
+            
         };
         
         console.log(orders);
@@ -55,17 +48,14 @@ const Book = () => {
     }
     
     useEffect(()=>{
-        const url = `http://localhost:5000/service/${serviceId}`
+        const url = `http://localhost:5000/services/${serviceId}`
         fetch(url)
-
         .then(res =>res.json())
         .then(data => setBooking(data))
     },[serviceId])
-    console.log(booking)
     return (
-        <>
-          <section id="book">
-                <div className="book_input_container">
+        <div>
+            <div className="book_input_container">
                     <div className="book_input_box">
                         <h2>Book</h2> 
                         <form onSubmit={handleSubmit}>
@@ -73,13 +63,13 @@ const Book = () => {
                             type="text" 
                             name="customerName"
                             onBlur={handleBlur}
-                            defaultValue={userData.displayName}/>
+                            defaultValue={user.displayName}/>
 
                             <input 
                             type="text" 
                             name="customerEmail"
                             onBlur={handleBlur}
-                            defaultValue={userData.email}/>
+                            defaultValue={user.email}/>
 
                             <input 
                             type="text"
@@ -97,10 +87,9 @@ const Book = () => {
                         </form>
                         {orderSuccess && <Alert variant='success'>order placed succefully</Alert>}
                     </div>
-                </div>   
-          </section> 
-        </>
+                </div>
+        </div>
     );
 };
 
-export default Book;
+export default data;
