@@ -7,8 +7,8 @@ const BookingCard = ({ booking }) => {
   return (
     <>
       <Col lg={4} md={6} sm={12} className="booking_card">
-        <img src={serviceImage} alt="" />
-        <h5>{serviceName}</h5>
+        <img src={`data:image/png;base64,${serviceImage}`} alt="" />
+        <h5 >{serviceName}</h5>
       </Col>
     </>
   );

@@ -11,6 +11,15 @@
     border-radius: 7px;
     padding: 10px;
 }
+.book_input_box button{
+    width: 130px;
+    border: none;
+    color: white;
+    background-color: #251D58;
+    padding: 5px 20px;
+    font-weight: 600;
+    border-radius: 2px;
+}
 .book_input_box input[type="text"]{
     display: block;
     width: 100%;

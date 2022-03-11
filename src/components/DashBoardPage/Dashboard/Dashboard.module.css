@@ -24,3 +24,12 @@
     color: #10b981;
     background-color: #f9fafb;
   }
+  #dashboard span{
+    color: black;
+    margin-right: 5px;
+    font-size: 1.1rem;
+  }
+  #dashboard span:hover{
+    color: #10b981;
+   
+  }

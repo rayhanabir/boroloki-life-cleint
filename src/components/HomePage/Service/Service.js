@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsFillCartFill  } from 'react-icons/bs';
 import { Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './Service.css';
@@ -17,7 +18,7 @@ const Service = ({service}) => {
                 <h3>{name}</h3>
                 <h3>${price}</h3>
                 <p>{details}</p>
-                <button onClick={()=>handleBook(_id)}>Order</button>
+                <button onClick={()=>handleBook(_id)}><BsFillCartFill /> Order</button>
             </div>
           </Col>  
         </>

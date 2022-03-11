@@ -90,7 +90,7 @@ const Book = () => {
                                 <input type="radio" name="payment" id="paypal" />
                                 <label htmlFor="paypal">Paypal</label>
                             </div>  
-                            <button type='submit' className='btn btn-primary mb-3'>Submit</button>                          
+                            <button type='submit'>Submit</button>                          
                         </form>
                         {orderSuccess && <Alert variant='success'>order placed succefully</Alert>}
                     </div>

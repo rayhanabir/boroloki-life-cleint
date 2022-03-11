@@ -8,5 +8,6 @@
     text-align: center;
 }
 .booking_card img{
-    width: 100px;
+    width: 80px;
+    margin-bottom: 10px;
 }
