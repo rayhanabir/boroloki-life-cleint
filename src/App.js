@@ -14,7 +14,9 @@ import BookList from "./components/DashBoardPage/BookList/BookList";
 import Review from "./components/DashBoardPage/Review/Review";
 import ManageService from "./components/DashBoardPage/ManageService/ManageService";
 import OrderList from "./components/DashBoardPage/OrderList/OrderList";
-import Book from "./components/DashBoardPage/Book/Book";
+import Book from "./components/OtherPage/Book/Book";
+import AdminRoute from "./components/LoginPage/AdminRoute/AdminRoute";
+import NotFound from "./components/OtherPage/NotFound/NotFound";
 
 function App() {
   return (
@@ -27,16 +29,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path='/book/:serviceId' element={<PrivateRoute><Book/></PrivateRoute>}/>
           <Route path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}>
-            <Route path="/dashboard/addService" element={<AddService/>}/>
-            <Route path="/dashboard/makeAdmin" element={<MakeAdmin/>}/>
+            <Route path="/dashboard/addService" element={<AdminRoute><AddService/></AdminRoute>}/>
+            <Route path="/dashboard/makeAdmin" element={<AdminRoute><MakeAdmin/></AdminRoute>}/>
             <Route path="/dashboard/BookList" element={<BookList/>}/>
             <Route path="/dashboard/review" element={<Review/>}/>
-            <Route path="/dashboard/book/:serviceId" element={<Book/>}/>
-            <Route path="/dashboard/manage" element={<ManageService/>}/>
-            <Route path="/dashboard/orderList" element={<OrderList/>}/>
+            <Route path="/dashboard/manage" element={<AdminRoute><ManageService/></AdminRoute>}/>
+            <Route path="/dashboard/orderList" element={<AdminRoute><OrderList/></AdminRoute>}/>
           </Route>
-          
+         <Route path="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
