@@ -41,7 +41,7 @@ const ReviewCard = () => {
         {
             reviews.map(review =><SwiperSlide key={review._id}>
                 <div className='rounded p-3'>
-                <p>{review.comment.slice(0, 100)}</p>
+                <p>{review.comment.slice(0, 106)}</p>
                 <h5 className='text-dark'>{review.name}</h5>
                 <p><small>{review.companyDesignation}</small></p>
                 </div>

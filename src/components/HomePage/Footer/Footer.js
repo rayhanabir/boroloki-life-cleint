@@ -9,10 +9,10 @@ const Footer = () => {
               <Container>
 
                 <div className="footer_container">
-                    <div className="location">
+                    <div className="location box">
                         <p>Dhaka, Bangladesh</p>
                     </div>
-                    <div className="company">
+                    <div className="company box">
                         <h4>Company</h4>
                         <ul>
                             <li>About</li>
@@ -21,7 +21,7 @@ const Footer = () => {
                             <li>Terms & conditions</li>
                         </ul>
                     </div>
-                    <div className="links">
+                    <div className="links box">
                         <h4>Quick Links</h4>
                         <ul>
                             <li>Quick Links</li>
@@ -30,7 +30,7 @@ const Footer = () => {
                             <li>Contact</li>
                         </ul>
                     </div>
-                    <div className="about">
+                    <div className="about box">
                         <h4>About</h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed dolores dignissimos corrupti non aut veniam asperiores eos quasi fugiat corporis?</p>
                         

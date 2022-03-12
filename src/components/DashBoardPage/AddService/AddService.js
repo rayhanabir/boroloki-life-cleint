@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Alert} from 'react-bootstrap';
 import "./AddService.css";
 
 const AddService = () => {
@@ -6,6 +7,7 @@ const AddService = () => {
   const [servicePrice, setServicePrice] = useState(0);
   const [serviceDetails, setServiceDetails] = useState("");
   const [image, setImage] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ const AddService = () => {
       .then((res) => res.json())
       .then((data) => {
         if(data.insertedId){
-            console.log("service add successfully")
+            setSuccess(true)
         }
       })
       .catch((error) => {
@@ -56,7 +58,9 @@ const AddService = () => {
               <input type="file" onChange={e => setImage(e.target.files[0])} />
               <input type="submit" value="Submit" />
             </form>
+            {success && <Alert variant='success' className="mt-4">Service Added Successfully</Alert>}
           </div>
+          
         </div>
       </section>
     </>

@@ -5,26 +5,18 @@ import useAuth from '../../../hooks/useAuth';
 import './Book.css';
 const Book = () => {
     const [booking, setBooking] = useState({});
+    const [order, setOrder] = useState({});
     const [orderSuccess, setOrderSuccess] = useState(false)
     const {user} = useAuth();
-    const [userData, setUserData] = useState({...user})
     const {serviceId} = useParams()
     
-    const handleBlur = e =>{
-        const field = e.target.name;
-        const value = e.target.value;
-        const newInfo = {...booking}
-
-        if(field ==='serviceName'){
-            newInfo[field] = value;
-            setBooking(newInfo);
-        }
-        else{
-            const updateUser = {...user}
-            updateUser[field] = value;
-            setUserData(updateUser);
-        }  
+    const handleOnChange = e =>{
+        setOrder(prev=>({...prev, [e.target.name]:e.target.value}))
     }
+
+    useEffect(()=>{
+        setOrder(prev =>({...prev, customerName:user.displayName, customerEmail:user.email}))
+    },[user])
     
     const handleSubmit = e =>{
         e.preventDefault();
@@ -32,9 +24,11 @@ const Book = () => {
         const orders = {
             serviceName:booking.name,
             serviceImage:booking.image,
-            cutomerName : userData.displayName,
-            CustomerEmail : userData.email
+            cutomerName : order.customerName,
+            CustomerEmail : order.customerEmail
+            
         };
+        console.log(orders);
         fetch('http://localhost:5000/orders',{
             method:"POST",
             body:JSON.stringify(orders),
@@ -47,6 +41,8 @@ const Book = () => {
         .then(data =>{
             if(data.insertedId){
                 setOrderSuccess(true)
+                setOrder({})
+                setBooking({})
             }
         })
     }
@@ -69,30 +65,24 @@ const Book = () => {
                             <input
                             type="text" 
                             name="customerName"
-                            onBlur={handleBlur}
-                            defaultValue={userData.displayName}/>
+                            onChange={handleOnChange}
+                            defaultValue={!! order.customerName? order.customerName : ''}/>
 
                             <input 
                             type="text" 
                             name="customerEmail"
-                            onBlur={handleBlur}
-                            defaultValue={userData.email}/>
+                            onChange={handleOnChange}
+                            defaultValue={!!order.customerEmail ? order.customerEmail:'' }/>
 
                             <input 
                             type="text"
                             name="serviceName" 
-                            onBlur={handleBlur}
-                            defaultValue={booking.name}/>
-                            <p>pay with</p>
-                            <div className="payment">
-                                <input type="radio" name="payment" id="credit" />
-                                <label htmlFor="credit">Credit Card</label>
-                                <input type="radio" name="payment" id="paypal" />
-                                <label htmlFor="paypal">Paypal</label>
-                            </div>  
+                            onChange={handleOnChange}
+                            defaultValue={!!booking.name ? booking.name : ''}/>
+                             
                             <button type='submit'>Submit</button>                          
                         </form>
-                        {orderSuccess && <Alert variant='success'>order placed succefully</Alert>}
+                        {orderSuccess && <Alert variant='success' className='mt-4'>order placed succefully</Alert>}
                     </div>
                 </div>   
           </section>   

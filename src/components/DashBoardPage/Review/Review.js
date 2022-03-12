@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+import {Alert} from 'react-bootstrap';
 import useAuth from "../../../hooks/useAuth";
 import "./Review.css";
 
 const Review = () => {
   const [review, setReview] = useState({});
+  const [reviewSuccess, setReviewSuccess] = useState(false);
   const {user} = useAuth();
-  const handleOnBlur = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-    const newInfo = { ...review };
-    newInfo[field] = value;
-    console.log(newInfo);
-    setReview(newInfo);
-  };
+  console.log(review);
+  
+  const handleOnChange =(e)=>{
+      setReview(prev=>({...prev, [e.target.name]:e.target.value}))
+  }
+
+  useEffect(()=>{
+    setReview(prev=>({...prev, name :user.displayName, companyDesignation:'rayhan'}))
+  },[user.displayName])
+
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:5000/review", {
@@ -24,7 +28,10 @@ const Review = () => {
     })
     .then(res => res.json())
     .then(data =>{
-        console.log(data)
+        if(data.insertedId){
+          setReviewSuccess(true);
+          setReview({})
+        }
     })
   };
   return (
@@ -36,26 +43,29 @@ const Review = () => {
             <form onSubmit={handleReviewSubmit}>
               <input
                 type="text"
-                onChange={handleOnBlur}
+                onChange={handleOnChange}
                 name="name"
-                defaultValue={user.displayName}
+                value={review.name || ''}
                 placeholder="Your Name"
               />
               <input
                 type="text"
-                onChange={handleOnBlur}
+                onChange={handleOnChange}
                 name="companyDesignation"
+                value={review.companyDesignation || ''}
                 required
                 placeholder="Company Designation"
               />
               <textarea
-                onChange={handleOnBlur}
+                onChange={handleOnChange}
                 name="comment"
+                value={review.comment || ''}
                 required
                 placeholder="Description"
               ></textarea>
               <button type="submit">Submit</button>
             </form>
+            {reviewSuccess && <Alert variant='success' className="mt-4">Thanks For Your Valuable Comment</Alert>}
           </div>
         </div>
         
