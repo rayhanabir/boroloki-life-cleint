@@ -11,7 +11,8 @@ const Book = () => {
     const {serviceId} = useParams()
     
     const handleOnChange = e =>{
-        setOrder(prev=>({...prev, [e.target.name]:e.target.value}))
+        const{name, value} = e.target;
+        setOrder(prev=>({...prev, [name]:value}))
     }
 
     useEffect(()=>{

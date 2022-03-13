@@ -9,7 +9,8 @@ const Review = () => {
   const {user} = useAuth();
   
   const handleOnChange =(e)=>{
-      setReview(prev=>({...prev, [e.target.name]:e.target.value}))
+      const {name, value} = e.target;
+      setReview(prev=>({...prev, [name]:value}))
   }
 
   useEffect(()=>{
