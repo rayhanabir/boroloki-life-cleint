@@ -28,7 +28,6 @@ const Book = () => {
             CustomerEmail : order.customerEmail
             
         };
-        console.log(orders);
         fetch('http://localhost:5000/orders',{
             method:"POST",
             body:JSON.stringify(orders),

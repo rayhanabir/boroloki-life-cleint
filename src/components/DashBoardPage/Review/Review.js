@@ -7,14 +7,13 @@ const Review = () => {
   const [review, setReview] = useState({});
   const [reviewSuccess, setReviewSuccess] = useState(false);
   const {user} = useAuth();
-  console.log(review);
   
   const handleOnChange =(e)=>{
       setReview(prev=>({...prev, [e.target.name]:e.target.value}))
   }
 
   useEffect(()=>{
-    setReview(prev=>({...prev, name :user.displayName, companyDesignation:'rayhan'}))
+    setReview(prev=>({...prev, name :user.displayName, companyDesignation:'ceo'}))
   },[user.displayName])
 
   const handleReviewSubmit = (e) => {
