@@ -2,7 +2,8 @@
 .add_admin_area{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 30px 0;
+    padding: 10px;
 }
 .add_admin_box{
     width: 60%;

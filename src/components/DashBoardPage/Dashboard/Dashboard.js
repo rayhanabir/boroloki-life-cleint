@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {BsListCheck,BsFillPlusSquareFill,BsFillPersonPlusFill,BsListUl} from 'react-icons/bs'
 import {FaCommentDots} from 'react-icons/fa'
 import {AiOutlineRollback} from 'react-icons/ai'
@@ -11,6 +11,11 @@ import useAuth from "../../../hooks/useAuth";
 
 const Dashboard = () => {
     const {logOut, admin} = useAuth();
+
+    useEffect(()=>{
+      document.title = 'Dashboard | LuxuryLife'
+    },[])
+    
   return (
     <>
       <section id={style.dashboard}>

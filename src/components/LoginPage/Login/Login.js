@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Alert, Form, Spinner } from "react-bootstrap";
+import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import "./Login.css";
@@ -48,7 +49,7 @@ const Login = () => {
             <button className="login_btn">Login</button>
           </Form>
           <p className="text-center mt-2">New User? please Register <Link to='/register'>Register</Link></p>
-            <button className="login_btn" onClick={handleGoogleLogin}>Sign in Using Google</button>
+            <button className="login_btn" onClick={handleGoogleLogin}><FcGoogle/> Sign in Using Google</button>
           </div>}
           {isLoading && <Spinner animation="border" variant="secondary" />} 
         </div>

@@ -9,6 +9,8 @@ const Book = () => {
     const [orderSuccess, setOrderSuccess] = useState(false)
     const {user} = useAuth();
     const {serviceId} = useParams()
+
+    
     
     const handleOnChange = e =>{
         const{name, value} = e.target;
@@ -18,12 +20,17 @@ const Book = () => {
     useEffect(()=>{
         setOrder(prev =>({...prev, customerName:user.displayName, customerEmail:user.email}))
     },[user])
+
+    useEffect(()=>{
+        document.title = 'book | Luxury Life'
+    },[])
     
     const handleSubmit = e =>{
         e.preventDefault();
         
         const orders = {
             serviceName:booking.name,
+            status:'pending',
             serviceImage:booking.image,
             cutomerName : order.customerName,
             CustomerEmail : order.customerEmail
@@ -44,6 +51,7 @@ const Book = () => {
                 setOrder({})
                 setBooking({})
             }
+            
         })
     }
 
