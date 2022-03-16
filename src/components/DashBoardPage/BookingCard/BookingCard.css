@@ -11,3 +11,19 @@
     width: 80px;
     margin-bottom: 10px;
 }
+ .pending{
+    background-color: #FFE9A8;
+    display: inline-block;
+    width: 100px;
+    color: black;
+    font-weight: 500;
+    padding: 3px;
+}
+ .done{
+    background-color: #B4F6CD;
+    display: inline-block;
+    width: 100px;
+    color: black;
+    font-weight: 500;
+    padding: 3px;
+}

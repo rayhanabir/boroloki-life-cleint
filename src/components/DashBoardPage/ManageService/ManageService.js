@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import Preloader from "../../OtherPage/Preloader/Preloader";
 
 const ManageService = () => {
   const [manageService, setManageService] = useState([]);
@@ -30,7 +31,7 @@ const ManageService = () => {
 
   return (
     <>
-      <section id="manage_service">
+      {manageService.length ? <section id="manage_service">
         <div className="p-5">
           <Table striped bordered hover>
             <thead>
@@ -51,7 +52,7 @@ const ManageService = () => {
                 }
           </Table>
         </div>
-      </section>
+      </section>:<Preloader/>}
     </>
   );
 };

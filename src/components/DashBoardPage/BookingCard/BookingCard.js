@@ -9,7 +9,7 @@ const BookingCard = ({ booking }) => {
       <Col lg={4} md={6} sm={12} className="booking_card">
         <img src={`data:image/png;base64,${serviceImage}`} alt="" />
         <h5 >{serviceName}</h5>
-        <p>{status}</p>
+        <p className={`${status ==='pending'?'pending':'done'}`}>{status}</p>
       </Col>
     </>
   );
